@@ -45,8 +45,8 @@ jobs:
         cd preprocessing
         ls -la
         echo "Checking if preprocessed files exist..."
-        test -f iris_train_preprocessed.csv && echo "✓ Train data created" || echo "✗ Train data missing"
-        test -f iris_test_preprocessed.csv && echo "✓ Test data created" || echo "✗ Test data missing"
+        test -f iris_preprocessing/iris_train_preprocessed.csv && echo "✓ Train data created" || echo "✗ Train data missing"
+        test -f iris_preprocessing/iris_test_preprocessed.csv && echo "✓ Test data created" || echo "✗ Test data missing"
         test -f scaler.pkl && echo "✓ Scaler created" || echo "✗ Scaler missing"
         
     - name: Upload preprocessed data as artifacts
@@ -54,8 +54,8 @@ jobs:
       with:
         name: preprocessed-data
         path: |
-          preprocessing/iris_train_preprocessed.csv
-          preprocessing/iris_test_preprocessed.csv
+          preprocessing/iris_preprocessing/iris_train_preprocessed.csv
+          preprocessing/iris_preprocessing/iris_test_preprocessed.csv
           preprocessing/scaler.pkl
         retention-days: 30
         
