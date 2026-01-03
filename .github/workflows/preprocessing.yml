@@ -18,7 +18,7 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -45,7 +45,7 @@ jobs:
         test -f scaler.pkl && echo "✓ Scaler created" || echo "✗ Scaler missing"
         
     - name: Upload preprocessed data as artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: preprocessed-data
         path: |
