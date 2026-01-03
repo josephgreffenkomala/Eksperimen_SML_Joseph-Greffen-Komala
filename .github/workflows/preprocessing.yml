@@ -63,8 +63,8 @@ jobs:
       run: |
         git config --global user.name "josephgreffenkomala"
         git config --global user.email "josephgreffenkomala@mail.ugm.ac.id"
-        git add preprocessing/*.csv preprocessing/*.pkl
+        git add preprocessing/iris_preprocessing/*.csv preprocessing/*.pkl
         git diff --staged --quiet || git commit -m "Auto-update preprocessed data [skip ci]"
-        git pull --rebase origin main
+        git pull 
         git push
       continue-on-error: true
