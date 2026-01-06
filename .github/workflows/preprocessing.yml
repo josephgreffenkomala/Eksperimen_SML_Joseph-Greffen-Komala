@@ -32,7 +32,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pandas numpy scikit-learn
+        pip install pandas numpy scikit-learn seaborn
         
     - name: Run preprocessing pipeline
       run: |
@@ -44,8 +44,8 @@ jobs:
         cd preprocessing
         ls -la
         echo "Checking if preprocessed files exist..."
-        test -f iris_preprocessing/iris_train_preprocessed.csv && echo "✓ Train data created" || echo "✗ Train data missing"
-        test -f iris_preprocessing/iris_test_preprocessed.csv && echo "✓ Test data created" || echo "✗ Test data missing"
+        test -f penguins_preprocessing/penguins_train_preprocessed.csv && echo "✓ Train data created" || echo "✗ Train data missing"
+        test -f penguins_preprocessing/penguins_test_preprocessed.csv && echo "✓ Test data created" || echo "✗ Test data missing"
         test -f scaler.pkl && echo "✓ Scaler created" || echo "✗ Scaler missing"
         
     - name: Upload preprocessed data as artifacts
@@ -53,8 +53,8 @@ jobs:
       with:
         name: preprocessed-data
         path: |
-          preprocessing/iris_preprocessing/iris_train_preprocessed.csv
-          preprocessing/iris_preprocessing/iris_test_preprocessed.csv
+          preprocessing/penguins_preprocessing/penguins_train_preprocessed.csv
+          preprocessing/penguins_preprocessing/penguins_test_preprocessed.csv
           preprocessing/scaler.pkl
         retention-days: 30
         
@@ -62,7 +62,7 @@ jobs:
       run: |
         git config --global user.name "josephgreffenkomala"
         git config --global user.email "josephgreffenkomala@mail.ugm.ac.id"
-        git add preprocessing/iris_preprocessing/*.csv preprocessing/*.pkl
+        git add preprocessing/penguins_preprocessing/*.csv preprocessing/*.pkl
         git diff --staged --quiet || git commit -m "Auto-update preprocessed data [skip ci]"
         git pull 
         git push

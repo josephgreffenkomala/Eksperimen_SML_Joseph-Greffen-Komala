@@ -1,20 +1,20 @@
 # ============================================
-# Iris Dataset Preprocessing Script
+# Penguins Dataset Preprocessing Script
 # ============================================
 
 # 1. Import Library
 import pandas as pd
 import numpy as np
+import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 # ============================================
 # 2. Load Dataset
 # ============================================
-DATA_PATH = "../iris_raw.csv"
-OUTPUT_DIR = "iris_preprocessing"
+OUTPUT_DIR = "penguins_preprocessing"
 
-df = pd.read_csv(DATA_PATH)
+df = sns.load_dataset("penguins")
 
 print("=== SEBELUM PREPROCESSING ===")
 print(f"Jumlah data           : {df.shape}")
@@ -22,11 +22,13 @@ print(f"Total missing values  : {df.isnull().sum().sum()}")
 print(f"Total duplikat        : {df.duplicated().sum()}")
 
 # ============================================
-# 3. Handling Duplicates
+# 3. Handling Missing Values & Duplicates
 # ============================================
-df_clean = df.drop_duplicates()
+# Drop missing values
+df_clean = df.dropna()
+df_clean = df_clean.drop_duplicates()
 
-print("\n=== SETELAH HAPUS DUPLIKAT ===")
+print("\n=== SETELAH HAPUS MISSING & DUPLIKAT ===")
 print(f"Jumlah data           : {df_clean.shape}")
 print(f"Total duplikat        : {df_clean.duplicated().sum()}")
 
@@ -34,10 +36,10 @@ print(f"Total duplikat        : {df_clean.duplicated().sum()}")
 # 4. Feature Selection
 # ============================================
 FEATURES = [
-    "sepal length (cm)",
-    "sepal width (cm)",
-    "petal length (cm)",
-    "petal width (cm)"
+    "bill_length_mm",
+    "bill_depth_mm",
+    "flipper_length_mm",
+    "body_mass_g"
 ]
 TARGET = "species"
 
@@ -93,11 +95,11 @@ test_preprocessed = X_test_scaled.copy()
 test_preprocessed[TARGET] = y_test.values
 
 train_preprocessed.to_csv(
-    f"{OUTPUT_DIR}/iris_train_preprocessed.csv",
+    f"{OUTPUT_DIR}/penguins_train_preprocessed.csv",
     index=False
 )
 test_preprocessed.to_csv(
-    f"{OUTPUT_DIR}/iris_test_preprocessed.csv",
+    f"{OUTPUT_DIR}/penguins_test_preprocessed.csv",
     index=False
 )
 
@@ -112,5 +114,5 @@ print("\n" + "=" * 50)
 print("PREPROCESSING SELESAI ✅")
 print("=" * 50)
 print("File tersimpan:")
-print("- iris_preprocessing/iris_train_preprocessed.csv")
-print("- iris_preprocessing/iris_test_preprocessed.csv")
+print("- penguins_preprocessing/penguins_train_preprocessed.csv")
+print("- penguins_preprocessing/penguins_test_preprocessed.csv")
