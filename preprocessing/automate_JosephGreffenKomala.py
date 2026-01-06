@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 # ============================================
 # 2. Load Dataset
 # ============================================
-DATA_PATH = "iris_raw.csv"
+DATA_PATH = "../iris_raw.csv"
 OUTPUT_DIR = "iris_preprocessing"
 
 df = pd.read_csv(DATA_PATH)

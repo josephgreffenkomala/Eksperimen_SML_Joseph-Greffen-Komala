@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'preprocessing/iris_raw.csv'
-      - 'preprocessing/automate_AsahDicoding.py'
+      - 'preprocessing/**'
       - '.github/workflows/preprocessing.yml'
   pull_request:
     branches:
