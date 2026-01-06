@@ -37,7 +37,7 @@ jobs:
     - name: Run preprocessing pipeline
       run: |
         cd preprocessing
-        python automate_AsahDicoding.py
+        python automate_JosephGreffenKomala.py
         
     - name: Check output files
       run: |
